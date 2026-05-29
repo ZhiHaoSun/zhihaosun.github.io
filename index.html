@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Zhihao | Personal Website</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-orange: #f97316;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 4px;
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-img-wrapper {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--bg-dark);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #7dd3fc;
+        }
+
+        /* Common Section Layout */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-blue);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* School & Projects Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .img-card {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .card ul {
+            margin-left: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 4px0px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-dark);
+            border: 4px solid var(--accent-blue);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .left {
+            left: 0;
+            padding-right: 40px;
+        }
+
+        .right {
+            left: 50%;
+            padding-left: 40px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--bg-card);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Highlight point change */
+        .timeline-item.singapore-era::after {
+            border-color: var(--accent-blue);
+        }
+        .timeline-item.china-io-era::after {
+            border-color: var(--accent-orange);
+        }
+
+        /* Friends Section Layout */
+        .friends-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .gallery-placeholder {
+            background-color: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background-color: #0b1322;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .hero-container, .grid-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            header {
+                padding-top: 10rem;
+            }
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 21px;
+                right: auto;
+            }
+            .left, .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">SUN <span>ZHIHAO</span></a>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#school">School Life</a></li>
+            <li><a href="#timeline">My Journey</a></li>
+            <li><a href="#friends">Friends</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Hi, I am <span>Sun Zhihao</span></h1>
+                <h2>Innovator, Tech Enthusiast & Explorer</h2>
+                <p>Welcome to my personal corner of the web. Born and raised in China, built and matured over a incredible 12-year chapter in Singapore. Discover my academic journey at NTU, tech development passion, and the milestones that shape who I am today.</p>
+                <a href="#school" class="btn">Explore My Life</a>
+            </div>
+            <div class="hero-img-wrapper">
+                <img src="myself.jpeg" alt="Sun Zhihao" class="hero-img">
+            </div>
+        </div>
+    </header>
+
+    <!-- School Life Section -->
+    <section id="school">
+        <h2 class="section-title">School Life at NTU</h2>
+        <div class="grid-layout">
+            <img src="ntu.webp" alt="Nanyang Technological University - The Hive" class="img-card">
+            <div class="card">
+                <h3>Nanyang Technological University</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                    Spending years walking through iconic spaces like *The Hive* shaped my perspective on innovation and continuous exploration. Here, academic rigour meets practical application.
+                </p>
+                <ul>
+                    <li>Deep dive into design, architecture, and technology domains.</li>
+                    <li>Collaborative engineering cultures, intense project sessions, and lifelong networks.</li>
+                    <li>Translating theoretical milestones into meaningful, complex tech solutions.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline">
+        <h2 class="section-title">My Journey Timeline</h2>
+        <div class="timeline">
+            <!-- China Era -->
+            <div class="timeline-item left china-io-era">
+                <div class="timeline-content">
+                    <h3>The Roots (Childhood)</h3>
+                    <h4>Growing up in China</h4>
+                    <p>Formative years filled with early education, cultivating foundational technical interests, and building cherished, unforgettable family memories with my parents.</p>
+                </div>
+            </div>
+            <!-- Move to SG -->
+            <div class="timeline-item right singapore-era">
+                <div class="timeline-content">
+                    <h3>Age 18 | The Leap</h3>
+                    <h4>Relocating to Singapore</h4>
+                    <p>Embraced a massive life transition. Stepped out of my comfort zone to pursue a global canvas of learning, growth, and independence in Singapore.</p>
+                </div>
+            </div>
+            <!-- NTU Chapter -->
+            <div class="timeline-item left singapore-era">
+                <div class="timeline-content">
+                    <h3>The Academic Peak</h3>
+                    <h4>Life at NTU</h4>
+                    <p>Immersed in advanced education frameworks at Nanyang Technological University. Developed core technical values, spent endless nights building frameworks, and explored state-of-the-art architectures.</p>
+                </div>
+            </div>
+            <!-- Present Day -->
+            <div class="timeline-item right singapore-era">
+                <div class="timeline-content">
+                    <h3>12 Years Later | Present Day</h3>
+                    <h4>Home & Maturation</h4>
+                    <p>A beautiful 12-year odyssey in Singapore. Transformed from an eager student into a skilled innovator with rich projects, deep local friendships, and a solid vision for tomorrow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Friends & Memories Section -->
+    <section id="friends">
+        <h2 class="section-title">Friends & Memories</h2>
+        <p class="friends-intro">A timeline is nothing without the people who walked it with you. From late-night research sprints to exploring the vibrant food scenes of Singapore, my community keeps me grounded.</p>
+        <div class="gallery-placeholder">
+            <p>📷 <strong>Friendship Gallery Area</strong></p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Upload group pictures with friends to complete this interactive space!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sun Zhihao. All rights reserved. Crafted with passion.</p>
+    </footer>
+
+    <!-- Interactive Navigation Tracking Logic -->
+    <script>
+        const sections = document.querySelectorAll('section, header');
+        const navLi = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
